@@ -42,7 +42,6 @@ Con:
 ---
 ![Design 1 image](Design4.png)
 
-Design#4:
 Pro:
 1. Meets all the requirements of the design   
 
