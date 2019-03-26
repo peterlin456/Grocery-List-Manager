@@ -34,9 +34,9 @@ Pro:
 2. Easy to identify all the classes
 
 Con:
-1.Bad diagram style
-2.Database class is not necessary 
-3.Missing return type for operations
+1. Bad diagram style
+2. Database class is not necessary 
+3. Missing return type for operations
 
 #### Design 4
 ---
@@ -60,6 +60,7 @@ Team member did not submit
 ![Team Design image](TeamDesign.png)
 
 Design#1:
+
 Commonalities:
 1. Similar grocery list,grocery list manager, and item class.
 
@@ -69,6 +70,7 @@ Differences:
 3. Missing Item Type class
 
 Design#2:
+
 Commonalities:
 1. Similar grocery list,grocery list manager, and item class.
 2. Some operations and attributes are similar
@@ -79,6 +81,7 @@ Differences:
 2. addToList attributes placed in Item
 
 Design#3:
+
 Commonalities:
 1. Some classes have the similar attribute and operations.
 
@@ -88,6 +91,7 @@ Differences:
 3. More details added to classes
       
 Design#4:
+
 Commonalities:
 1. Class names.
 2. Relations between classes.
