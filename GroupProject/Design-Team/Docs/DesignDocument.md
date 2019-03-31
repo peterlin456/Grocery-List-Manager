@@ -33,7 +33,10 @@ Require Android 5.0 or above and has at least 50MB storage free.
 
 ### 2.2 Deployment Diagram
 
-*This section should describe how the different components will be deployed on actual hardware devices. Similar to the previous subsection, this diagram may be unnecessary for simple systems; in these cases, simply state so and concisely state why.*
+- The deployment diagram is simple and straight forward, since the only hardware element is android device, which everything is run on the device and handle its own database. 
+
+![Deployment Diagram](design_diagram/DEP_diagram.jpeg)
+
 
 ## 3 Low-Level Design
 
@@ -45,7 +48,9 @@ Require Android 5.0 or above and has at least 50MB storage free.
 
 ### 3.2 Other Diagrams
 
-*<u>Optionally</u>, you can decide to describe some dynamic aspects of your system using one or more behavioral diagrams, such as sequence and state diagrams.*
+- In the sequence diagram, describe the interactions between List Manager, Grocery List, Item and ItemType. 
+
+![Sequence Diagram](design_diagram/SEQ_diagram.jpeg)
 
 ## 4 User Interface Design
 
