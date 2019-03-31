@@ -35,7 +35,7 @@ Require Android 5.0 or above and has at least 50MB storage free.
 
 - The deployment diagram is simple and straight forward, since the only hardware element is android device, which everything is run on the device and handle its own database. 
 
-![Deployment Diagram](design_diagram/DEP_diagram.jpeg)
+![Deployment_Diagram](design_diagram/DEP_diagram.png)
 
 
 ## 3 Low-Level Design
@@ -50,7 +50,7 @@ Require Android 5.0 or above and has at least 50MB storage free.
 
 - In the sequence diagram, describe the interactions between List Manager, Grocery List, Item and ItemType. 
 
-![Sequence Diagram](design_diagram/SEQ_diagram.jpeg)
+![Sequence_Diagram](design_diagram/SEQ_diagram.png)
 
 ## 4 User Interface Design
 
