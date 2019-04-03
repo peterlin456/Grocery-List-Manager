@@ -33,7 +33,7 @@
 On ListManager
 
 | Test | Description | Expected Result |
-|----|:-----||:-----|
+|----|:-----|:-----|
 | Create List | Show new list and notice input list name | New list created |
 | Rename List | Notice input the new list name | Renamed list |
 | Select List | Show the list | List is shown |
@@ -42,7 +42,7 @@ On ListManager
 On GroceryList
 
 | Test | Description | Expected Result |
-|----|:-----||:-----|
+|----|:-----|:-----|
 | Add Item | Show new item | Item added |
 | Delete item | The item is removed | Item removed |
 | Change item quantity | show input the quantity of the item | Item quantity changed |
@@ -52,13 +52,13 @@ On GroceryList
 On ItemType
 
 | Test | Description | Expected Result |
-|----|:-----||:-----|
+|----|:-----|:-----|
 | Create New Item | Show the new item and request input name | New Item Saved |
 
 On Item
 
 | Test | Description | Expected Result |
-|----|:-----||:-----|
+|----|:-----|:-----|
 | Change Quantity | Show the input of the request on the quantity of the item | Item Quantity Changed |
 
 
