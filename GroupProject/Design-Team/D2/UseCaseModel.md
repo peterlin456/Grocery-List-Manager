@@ -10,93 +10,154 @@
 
 Select List
 
-- *Requirements: User has the choice of which type of list he wants to use.
-- *Pre-conditions: n/a
-- *Post-conditions: User's GUI will show the selected list.
-- *Scenarios: User choose option "List" and picks one.
+- Requirements: User can select a list to manage.
+- Pre-conditions: User has at least one list.
+- Post-conditions: User's GUI will show the selected list.
+- Scenarios:
+	1. User selects a list.
 
 Create List
 
-- *Requirements: User has the choice of creating a new list.
-- *Pre-conditions: n/a
-- *Post-conditions: User has the option of using the newly created list. The newly created list will be saved under "Select List".
-- *Scenarios: User selects option "Creates List".
+- Requirements: User has the choice of creating a new list.
+- Pre-conditions: n/a
+- Post-conditions: User has the option of using the newly created list. The newly created list will be saved.
+- Scenarios:
+	1. User selects option "Create New List".
+	2. User enters a name for the list.
+	3. User clicks "Create List".
+	4. The system saves the list to the database.
+- Alternative Scenarios:
+	- 2a. User does not enter a name. The list is not created and a prompt appears to enter a name for the list.
+- Exception:
+	- 2a. User exits "Create List". The list is not created. The use case ends.
 
 Rename List
 
-- *Requirements: User can rename a list that are stored under "Select List".
-- *Pre-conditions: List must already exist and should be found under "Select List".
-- *Post-conditions: List will be renamed and saved from "Select List".
-- *Scenarios: User  chooses option "Rename List" and renames a list.
+- Requirements: User can rename a list that is stored.
+- Pre-conditions: The list must already exist and should be found under "Select List".
+- Post-conditions: The list will be renamed and saved.
+- Scenarios:
+	1. User chooses option "Rename List"
+	2. The system opens a list of existing lists.
+	3. User selects a list.
+	4. User enters a name for the list.
+	5. The system renames the list and saves the change.
+- Alternative Scenarios:
+	- 4a. User does not enter a name. The list's name is not changed and a prompt appears to enter a name for the list.
+- Exception:
+	- 2a. There are no existing lists. A warning appears saying there are no existing lists. The use case ends.
+	- 3a. User exits "Rename List". The use case ends.
 
 Delete List
 
-- *Requirements: List is no longer needed therefore user deletes it.
-- *Pre-conditions: List must already and should be found under "Select List".
-- *Post-conditions: List would be removed from "Select List".
-- *Scenarios: User chooses option "Delete List" and deletes a list.
+- Requirements: User can delete an existing list.
+- Pre-conditions: The list must already exist and be saved.
+- Post-conditions: The list is removed from the database.
+- Scenarios:
+	1. User chooses option "Delete List"
+	2. The system opens a list of existing lists.
+	3. User selects a list.
+	4. The system removes the selected list.
+- Exception:
+	- 2a. There are no existing lists. A warning appears saying there are no existing lists. The use case ends.
+	- 3a. User exits "Delete List". The use case ends.
 
 Check off item from list
 
-- *Requirements: User checks off a item from list, item is not deleted from list.
-- *Pre-conditions: List must have been selected prior.
-- *Post-conditions: Item would be checked off from list.
-- *Scenarios: User has choosen a list and checks off an item from the list.
+- Requirements: User checks off an item on a list.
+- Pre-conditions: The list must have been selected. The item must be on the list.
+- Post-conditions: Item is checked off on the list.
+- Scenarios:
+	1. User checks off an item on the list.
+	2. The system saves the check off for the item on the list.
 
 Clear all check offs from list
 
-- *Requirements: All checks from a list would be cleared (unchecked).
-- *Pre-conditions: List would have at least one item checked off.
-- *Post-conditions: List would have no checked off items.
-- *Scenarios: User has choosen a list and has one or more item checked off.
-	User choose option "Clear all check offs from list", list is set back to default state.
+- Requirements: User can clear all checks from a list(unchecked).
+- Pre-conditions: The list is selected. The list has at least one item checked off.
+- Post-conditions: The list has no checked off items.
+- Scenarios:
+	1. User chooses option "Clear all check offs from list".
+	2. The system resets the checks for all items on the list.
+- Alternative Scenarios:
+	- 2a. There are no items on the list.
+	- 2b. There are no checks on the list.
 
 Delete item
 
-- *Requirements: User no longer needs an item and discards it from list.
-- *Pre-conditions: List must have this item in it.
-- *Post-conditions: List will no longer have this item in it and it would save its update.
-- *Scenarios: User has choosen a list, chooses "Delete item" option and item is removed from list.
+- Requirements: User removes an item from a list.
+- Pre-conditions: User has selected a list. The list has the selected item.
+- Post-conditions: The list will no longer have the item.
+- Scenarios:
+	1. User chooses "Delete item" for an item on a list.
+	2. The system removes the item from the list and saves the change.
 
 Add item
 
-- *Requirements: User adds an item to the list.
-- *Pre-conditions: The item added was not previously there.
-- *Post-conditions: Item added to the list and it is saved for future reference.
-- *Scenarios: User has choosen a list, and chooses option "Add item" a new item is added to the list and saved.
+- Requirements: User adds an item to the list.
+- Pre-conditions: The item added was not previously there.
+- Post-conditions: The item and quantity are added to the list.
+- Scenarios:
+	1. User chooses option "Add item".
+	2. The system presents a list of items in the database by itemtype.
+	3. User selects an item from the list to add.
+	4. The system prompts the user for a quantity.
+	5. User enters a valid quantity.
+	6. The system saves the item and quantity to the list.
+- Alternative Scenario:
+	- 3a. The item already exists in the list. The system prompts the user to select a new item.
+	- 5a. User enters an invalid quantity. The system prompts the user to enter a valid quantity.
+- Exception:
+	- 3b. User exits "Add Item". The use case ends.
+	- 5b. User exits "Add Item". The selected item is not added to the list. The use case ends.
 
-Specifiy Quantity
+Change Quantity
 
-- *Requirements: User specifies the quantity of a item either by pounds or count.
-- *Pre-conditions: Item must exist in the list.
-- *Post-conditions: List will be updated with its quantity and saved. 
-- *Scenarios: Item either existed in list or item was added and user would like to add a quantity for it.
+- Requirements: User changes the quantity of a item on a list.
+- Pre-conditions: User has selected a list. Item must exist in the list.
+- Post-conditions: The list item will be updated with its quantity and saved.
+- Scenarios:
+	1. User selects "Change Quantity" for an item on the list.
+	2. The system prompts the user for a quantity.
+	3. User enters a valid quantity.
+	4. The system changes the quantity for the list item and saves the change.
+- Alternative Scenario:
+	- 3a. User enters an invalid quantity. The system prompts the user to enter a valid quantity.
+- Exception:
+	- 3b. User exits "Change Quantity". The quantity is unchanged. The use case ends.
 
-Search for item
+Search for Item
 
-- *Requirements: User searches for an item to add to list.
-- *Pre-conditions: Item does not exist in the current list.
-- *Post-conditions: After item searched it would be added to the list as well as quantity specified then saved.
-- *Scenarios: User has choosen a list and chooses option "Search for item".
-
-Similar items found
-
-- *Requirements: User searches for item and a list of similar item names.
-- *Pre-conditions: Item must not exsist in current list.
-- *Post-conditions: Search returns similar items and user can either add it to the list or not. If item added the list is saved.
-- *Scenarios: User has choosen a list and has searched for an item, searched has returned similar items and has the option to add it to list.
-
-No match found
-
-- *Requirements: User has searched for an item but there are no matches.
-- *Pre-conditions: Item does not exisit in list and the item database.
-- *Post-conditions: Item not found error would appear in GUI.
-- *Scenarios: User has choosen a list and has searched for an item, searched has returned an error stating no items found.
+- Requirements: User searches for an item to add to list.
+- Pre-conditions: Item does not exist in the current list.
+- Post-conditions: A new item is added to the list with its quantity specified and saved.
+- Scenarios:
+	1. User chooses option "Search for item".
+	2. User inputs a valid value to search.
+	3. The system searches the existing database of items to match the search term and item names .
+	4. The system presents a list of items with matching names. (Partial and full)
+	5. User selects an item from the given list to add.
+	6. See (Add Item).
+- Alternative Scenario:
+	- 2a. User enters an invalid term. The system prompts the user to enter a valid term.
+	- 4a. The system does not find any matching items. The system prompts the user to add a new item to the database. See (Add and save new item).
+	- 5a. User does not find the item in the given list. User selects to add a new item to the database. The system prompts the user to add a new item to the database. See (Add and save new item).
+- Exception:
+	- 2b. User exits "Search for Item". The use case ends.
 
 Add and save new item
 
-- *Requirements: User adds an item by type and saves it to the database.
-- *Pre-conditions: User searches for item, no match found case occurs notifiying that the item doesn't exist.
-- *Post-conditions: The item is added to the database as well as the list, list is saved.
-- *Scenarios: User has choosen a list and has searched for an item, searched has returned an error stating no items found.
-			  Item is now added to the database by type and to the list. 
+- Requirements: User adds an item with type and saves it to the database.
+- Pre-conditions: User has selected a list. User searched for an item in the database to add. The system or the user did not find the item searched for.
+- Post-conditions: The item is added to the database. The item with its quantity is added to the list and saved.
+- Scenarios:
+	1. The system prompts the user to add a new item to the database.
+	2. User selects an existing item type and enters a valid item name.
+	3. The system adds the item with its item type to the database.
+	4. The system prompts the user to add the item to the list. (Add item)
+	5. See (Add item) Steps 4-6.
+- Alternative Scenarios:
+	- 2a. User enters an invalid item name. The system prompts the user to enter a valid item name.
+- Exception:
+	- 2b. User exits "Add and save new item". The item is not added to the database and list. The use case ends.
+	- 5a. User exits "Add and save new item". The item is added to the database. The item is not added to the list. The use case ends.
