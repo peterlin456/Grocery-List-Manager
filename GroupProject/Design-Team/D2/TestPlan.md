@@ -30,38 +30,17 @@
 *Test each item and operation depending on the black-box test.*
 
 ## 2 Test Cases
-On ListManager
 
-| Test | Description | Expected Result |
-|----|:-----|:-----|
-| Create List | Show new list and notice input list name | New list created |
-| Rename List | Notice input the new list name | Renamed list |
-| Select List | Show the list | List is shown |
-| Delete List | The list is removed | List is deleted |
-
-On GroceryList
-
-| Test | Description | Expected Result |
-|----|:-----|:-----|
-| Add Item | Show new item | Item added |
-| Delete item | The item is removed | Item removed |
-| Change item quantity | show input the quantity of the item | Item quantity changed |
-| Search item | show the input request on the search port | Item found or not found |
-| Uncheck All | Remove all the marks of the checked on the lists | All checks removed |
-
-On ItemType
-
-| Test | Description | Expected Result |
-|----|:-----|:-----|
-| Create New Item | Show the new item and request input name | New Item Saved |
-
-On Item
-
-| Test | Description | Expected Result |
-|----|:-----|:-----|
-| Change Quantity | Show the input of the request on the quantity of the item | Item Quantity Changed |
-
-
-
-
-
+|ID | Test | Description | Steps | Expected Result | Actual Result | Pass/Fail Information | Additional Information |
+|----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| A1 | Select List | Show the list | 	1. User selects a list. | List is shown | N/A | None | None |
+| A2 | Create List | Show new list and notice input list name |	1. User selects option "Create New List".<br>2. User enters a name for the list.<br>	3. User clicks "Create List". | New list created and saved | N/A | None | None |
+| A3 | Rename List | Notice input the new list name | 	1. User chooses option "Rename List"<br>2. User selects a list.<br>3. User enters a name for the list.| List is renamed | N/A | None | None |
+| A4 | Delete List | The list is removed |	1. User chooses option "Delete List"<br>2. User selects a list.| List is deleted | N/A | None | None |
+| A5 | Check off item | Check off an item on a list |	1. [A1] Select List<br> 2. User checks off an item on the list.| Item checked off and saved | N/A | None | None |
+| A6 | Uncheck All | Remove all the marks of the checked on the lists |	1. [A1] Select List<br>2. User chooses option "Uncheck All".| All checks removed | N/A | None | None |
+| A7 | Delete item | The item is removed |	1. [A1] Select List<br>2. User chooses "Delete item" for an item on a list.| Item is removed from the list. | N/A | None | None |
+| A8 | Add Item | Add an item to a list |	1. [A1] Select List<br>2. User chooses option "Add item".<br>3. User selects an item from a list to add.<br>4. User enters a valid quantity.| Item added to the list and saved | N/A | None | None |
+| A9 | Change Quantity | Change the quantity for an item on a list |	1. [A1] Select List<br>2. User selects "Change Quantity" for an item on the list.<br>3. User enters a valid quantity.| Item quantity changed and saved | N/A | None | None |
+| A10 | Search item found | Search for an item that is in the database |	1. [A1] Select List<br>2. User chooses option "Search for item".<br>3. User inputs a valid value to search.<br>4. The system presents a list of items with matching names.<br>5. User selects an item from the given list to add.<br>	6. [A8] Add Item.| Item found and added to the list | N/A | None | None |
+| A11 | Search item not found | Search for an item not in the database and add a new item into the database |	1. [A1] Select List<br>2. User chooses option "Search for item".<br>3. User inputs a valid value to search.<br>User selects to add a new item to the database.<br>4. User selects an existing item type. <br>5. User enters a valid item name.<br>6. [A8] Add Item. | New Item saved to database. Item added to list. | N/A | None | New item may/may not be saved to the database if item is not added to the list |
