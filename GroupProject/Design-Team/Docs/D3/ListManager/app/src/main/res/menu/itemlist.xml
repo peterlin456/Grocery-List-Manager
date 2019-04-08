@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.qc.seclass.listmanager.Lists">
+    <item android:id="@+id/searchitem"
+        android:title="Search Item Type"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/additem"
+        android:title="Add Item"
+        app:showAsAction="never" />
+    <item android:id="@+id/Selectallitem"
+        android:title="Select All"
+        app:showAsAction="never" />
+    <item android:id="@+id/deletel"
+        android:title="Delete"
+        app:showAsAction="never" />
+</menu>
