@@ -2,6 +2,8 @@
 
 **Author**: Team 4
 
+Version 1.1
+
 ## 1 Use Case Diagram
 
 ![Use Case Diagram image](UseCaseDiagram.png)

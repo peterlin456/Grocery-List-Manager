@@ -2,6 +2,7 @@
 
 **Author**: Team 4
 
+Version 1.1
 ## 1 Introduction
 
 The product we will be developing will be an Android app for managing grocery lists.
@@ -21,7 +22,7 @@ Requirements Gathering
 - The team meets with the client and discusses the requirements for the product.
  The requirements that are gathered from the client are separated into functional and non-functional requirements.
 - Entrance criteria: Proposal for product from client
-- Exit criteria: Requirements for the product 
+- Exit criteria: Requirements for the product
 
 Analysis and Design
 
@@ -61,6 +62,6 @@ Deployment
 | ---------------- |:----- |
 | Chicong Lin | Architect, Developer |
 | Han Wen Loh | Architect, Developer |
-| Jonathan Cheu | Analyst, Database Manager, Developer |
+| Jonathan Cheu | Analyst, Test Engineer |
 | Miao Xu | Test Engineer, Developer |
-| Xavier Madonado | Analyst, Developer |
+| Xavier Madonado | Analyst, Database Manager |

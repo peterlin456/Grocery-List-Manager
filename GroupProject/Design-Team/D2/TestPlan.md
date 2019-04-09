@@ -1,33 +1,24 @@
-#Test Plan
+# Test Plan
 
-**Author**: Miao Xu, Team 4
+**Author**: Team 4
 
+Version 1.1
 ## 1 Testing Strategy
 
 ### 1.1 Overall Strategy
-- *Should test each class of the design. Listmanager, GroceryList, ItemType, and Item.*
-- *First, we should test each class to verify each unit works. *
-- *Second, we should test the processes between each unit to verify the relationship of each process is correct.*
-- *Third, we should test the system of the design to verify the whole system can work.*
-- *Fourth, we should test the system of the design to verify the return of each class is correct.*
+- We will test each class to verify that each unit works individually, the processes between each unit to verify that the relationship of each process is correct, the system of the design to verify that the whole system works, and the system of the design against the requirements to validate the system.
 
 ### 1.2 Test Selection
-- *I will use white-box technique to test the design.*
-- *Base on the design, the size of classes is not huge. It is easy to use white-box.*
+- We will use white-box techniques for the unit and integration tests. We will use both white-box and black-box techniques for system and validation testing.
 
 ### 1.3 Adequacy Criterion
-- *Test the operation of ListManager: create List, rename List, select List, and delete List.*
-- *Test The operation of GroceryList: add item, delete item, change item, search item, and uncheck.*
-- *Test the operation of ItemType: create new item, item type, and item name.*
-- *Test the operation of Item: change Quantity.*
+- We will be assessing the white-box test cases using key values representing possible sets of inputs for expected results and boundary cases. For black-box testing, we will be testing against the design and requirements formed by the team's analysis.
 
 ### 1.4 Bug Tracking
-- *Test each operation of each class one by one.*
-- *If some operation does not return correct result, the error can be found.*
-- *If some attribute does not return correct result, the error can be found.*
+- Bugs and enhancements will be tracked informally in a separate document in the repository.
 
 ### 1.5 Technology
-*Test each item and operation depending on the black-box test.*
+- Manual testing and JUnit testing will be used.
 
 ## 2 Test Cases
 
