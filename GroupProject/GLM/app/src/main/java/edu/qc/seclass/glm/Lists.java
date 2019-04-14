@@ -48,7 +48,7 @@ public class Lists extends AppCompatActivity {
                 item.setSelected(false);
             }
         }
-        setTitle(MainActivity.list.get(glposition).getName());
+        setTitle(db.getListName(glposition));
         itemAdapter = new CustAdapter(this, android.R.layout.simple_list_item_1, itemList);
         listView.setAdapter(itemAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,7 +94,9 @@ public class Lists extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()){
             case android.R.id.home:
-                onBackPressed();
+                intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 return true;
             case R.id.searchitemtype:
                 intent = new Intent(this, AdditemByType.class);

@@ -44,7 +44,6 @@ public class AdditemByType extends AppCompatActivity {
                 intent.putExtra("itemType", itemTypes.get(position));
                 intent.putExtra("glposition", glposition);
                 startActivity(intent);
-
             }
         });
     }

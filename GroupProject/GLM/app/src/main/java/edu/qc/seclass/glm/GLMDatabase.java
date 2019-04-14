@@ -64,7 +64,7 @@ public class GLMDatabase extends SQLiteOpenHelper
 
     String CREATE_ITEM_LIST_TABLE = "CREATE TABLE ITEM_LIST ("
             + "ItemID INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "itemName VARCHAR(50) NOT NULL, typeID INTEGER NOT NULL, FOREIGN KEY (typeID) REFERENCES Item_Type(typeID))";
+            + "itemName VARCHAR(50) NOT NULL, typeID INTEGER NOT NULL, FOREIGN KEY (typeID) REFERENCES Item_Type(typeID) ON DELETE CASCADE)";
 
 
     String CREATE_GROCERY_LIST_RELATION_TO_ITEMS = "CREATE TABLE GROCERY_LIST_RELATION_TO_ITEMS ("
@@ -73,8 +73,8 @@ public class GLMDatabase extends SQLiteOpenHelper
             + "Qty DOUBLE NOT NULL DEFAULT 0.0,"
             + "isSelected INTEGER DEFAULT 0,"
             + "PRIMARY KEY(ListID,ItemID)," // Composite Key
-            + "FOREIGN KEY(ListID) REFERENCES GROCERY_LIST (ListID),"
-            + "FOREIGN KEY(ItemID) REFERENCES Item_List(ItemID))";
+            + "FOREIGN KEY(ListID) REFERENCES GROCERY_LIST (ListID) ON DELETE CASCADE,"
+            + "FOREIGN KEY(ItemID) REFERENCES Item_List(ItemID) ON DELETE CASCADE)";
 
 
     @Override
@@ -99,6 +99,17 @@ public class GLMDatabase extends SQLiteOpenHelper
             values.put("type", i);
             db.insert("ITEM_TYPE", null, values);
         }
+    }
+
+    public String getListName(int listID){
+        String name = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String q = "SELECT * FROM GROCERY_LIST WHERE ListID = " + listID + ";";
+        Cursor cursor = db.rawQuery(q, null);
+        if(cursor.moveToFirst())
+            name = cursor.getString(1);
+        cursor.close();
+        return name;
     }
 
     private void insertItems(SQLiteDatabase db){
@@ -259,18 +270,15 @@ public class GLMDatabase extends SQLiteOpenHelper
         return id;
     }
 
-    ArrayList<Item_list> getItemsByType(String type){
-        ArrayList<Item_list> itemL = new ArrayList<>();
-        Item_list item = null;
+    ArrayList<String> getItemsByType(String type){
+        ArrayList<String> itemL = new ArrayList<>();
+        String item;
         SQLiteDatabase db = this.getWritableDatabase();
         String q = "SELECT * FROM ITEM_LIST WHERE typeID = " + getTypeID(type, db);
         Cursor cursor = db.rawQuery(q, null);
-        String n, t;
         if(cursor.moveToFirst()){
             do{
-                n = cursor.getString(1);
-                t = cursor.getString(2);
-                item = new Item_list(n, t, 0.0, false);
+                item = cursor.getString(1);
                 itemL.add(item);
             }while(cursor.moveToNext());
         }
@@ -289,6 +297,7 @@ public class GLMDatabase extends SQLiteOpenHelper
             values.put("Qty", qua);
             db.update("GROCERY_LIST_RELATION_TO_ITEMS", values, "ListID = " + listID + " AND ItemID = " +  getItemID(item.getName(), db), null);
         }else {
+            System.out.println("inside additem: listID " + listID);
             values.put("ListID", listID);
             values.put("ItemID", getItemID(item.getName(), db));
             values.put("Qty", item.getQuant());
@@ -313,7 +322,7 @@ public class GLMDatabase extends SQLiteOpenHelper
                 quan = cursor.getDouble(2);
                 s = cursor.getInt(3);
                 name = getItemName(n, db);
-                item = s <= 0 ? new Item_list(n, name, getItemType(n, db), quan, false):new Item_list(n, name, getItemType(n, db), quan, true);
+                item = s <= 0 ? new Item_list(name, getItemType(n, db), quan, false):new Item_list(name, getItemType(n, db), quan, true);
                 itemL.add(item);
             }while(cursor.moveToNext());
         }
@@ -329,6 +338,17 @@ public class GLMDatabase extends SQLiteOpenHelper
             name = cursor.getString(1);
         cursor.close();
         return name;
+    }
+
+    String getItemType(int itemID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String type = "";
+        String q = "SELECT ITEM_TYPE.*, ITEM_LIST.* FROM ITEM_TYPE, ITEM_LIST WHERE ITEM_LIST.ItemID = " + itemID + " AND ITEM_LIST.typeID = " + "ITEM_TYPE.ID";
+        Cursor cursor = db.rawQuery(q, null);
+        if(cursor.moveToFirst())
+            type = cursor.getString(1);
+        cursor.close();
+        return type;
     }
 
     String getItemType(int itemID, SQLiteDatabase db){

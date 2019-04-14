@@ -1,5 +1,6 @@
 package edu.qc.seclass.glm;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,8 +16,9 @@ public class AddItem extends AppCompatActivity {
     Button button;
     EditText quantity;
     TextView name;
-    Item_list item;
+    String item;
     int glposition, position;
+    Item_list newItem;
     GLMDatabase db;
     double que;
     @Override
@@ -33,7 +35,7 @@ public class AddItem extends AppCompatActivity {
         item = Viewname_class.itemList.get(position);
         button = (Button)findViewById(R.id.addtolist);
         name = (TextView) findViewById(R.id.name);
-        name.setText(item.getName());
+        name.setText(item);
         quantity = (EditText)findViewById(R.id.quantity);
         quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         button.setOnClickListener(new View.OnClickListener() {
@@ -43,10 +45,13 @@ public class AddItem extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter quantity", Toast.LENGTH_LONG).show();
                 }else {
                     que = Double.parseDouble(quantity.getText().toString());
-                    item.setQuant(que);
-                    db.addItem(item, glposition);
+                    newItem = new Item_list(item, db.getItemType(db.getItemID(item)), que, false);
+                    db.addItem(newItem, glposition);
                     // When clicked, jump back to list manager
-                    finish();
+                    Intent intent = new Intent(AddItem.this, Lists.class);
+                    intent.putExtra("glposition", glposition);
+                    startActivity(intent);
+                    //finish();
                 }
             }
         });

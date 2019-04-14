@@ -15,9 +15,10 @@ import java.util.ArrayList;
 
 public class Viewname_class extends AppCompatActivity {
     CustAdapter itemAdapter = null;
-    public static ArrayList<Item_list> itemList = null;
+    public static ArrayList<String> itemList = null;
     ListView listView;
     int glposition = -1;
+    String itemType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class Viewname_class extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         glposition = intent.getIntExtra("glposition", -1);
-        String itemType = intent.getStringExtra("itemType");
+        itemType = intent.getStringExtra("itemType");
         //String selSearchName = intent.getStringExtra("selSearchName");
         if (itemType != null){
             setTitle(itemType);
@@ -47,11 +48,7 @@ public class Viewname_class extends AppCompatActivity {
         GLMDatabase db = GLMDatabase.getInstance(getApplicationContext());
         itemList = db.getItemsByType(itemType);
 
-        ArrayList<String> itemNames = new ArrayList<>();
-        for (Item_list item: itemList) {
-            itemNames.add(item.getName());
-        }
-        itemAdapter = new CustAdapter(this, android.R.layout.simple_list_item_1, itemNames);
+        itemAdapter = new CustAdapter(this, android.R.layout.simple_list_item_1, itemList);
         listView.setAdapter(itemAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -64,10 +61,6 @@ public class Viewname_class extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    void addItemToList(Item_list item){
-
     }
 
     @Override

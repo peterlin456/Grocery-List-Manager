@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 // When clicked, jump to the list actiivity
                 Intent intent = new Intent(MainActivity.this, Lists.class);
-                intent.putExtra("glposition", position);
+                intent.putExtra("glposition", db.getListID(list.get(position).getName()));
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
@@ -138,14 +138,11 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = list.size() - 1; i >= 0; i--) {
                                 if (list.get(i).isSelected()) {
                                     db.removeList(list.get(i).getName());
+                                    ArrayList<String> il = db.getItemList();
+                                    for(String x : il){
+                                        System.out.println(x);
+                                    }
                                     list.remove(i);
-                                    ArrayList<Grocery_list> text = db.getList();
-                                    for(Grocery_list x:text){
-                                        System.out.println(x.getName() + ":" + db.getListID(x.getName()));
-                                    }
-                                    for(String d:db.getItemList()){
-                                        System.out.println(d);
-                                    }
                                 }
                             }
                             listAdapter.notifyDataSetChanged();

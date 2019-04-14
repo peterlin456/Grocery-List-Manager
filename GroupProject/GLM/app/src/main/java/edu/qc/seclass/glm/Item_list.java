@@ -15,14 +15,6 @@ public class Item_list implements Comparable<Item_list> {
         isSelected = s;
     }
 
-    public Item_list(int i, String n, String t, double q, boolean s)
-    {
-        name = n;
-        type = t;
-        quant = q;
-        isSelected = s;
-    }
-
     public String getName() {
         return name;
     }
