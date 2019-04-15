@@ -13,12 +13,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+//show item in a type
 public class Viewname_class extends AppCompatActivity {
-    CustAdapter itemAdapter = null;
     public static ArrayList<String> itemList = null;
     ListView listView;
     int glposition = -1;
-    String itemType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +29,11 @@ public class Viewname_class extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         glposition = intent.getIntExtra("glposition", -1);
-        itemType = intent.getStringExtra("itemType");
-        //String selSearchName = intent.getStringExtra("selSearchName");
+        String itemType = intent.getStringExtra("itemType");
         if (itemType != null){
             setTitle(itemType);
             searchItemByType(itemType);
-        }/*
-        else if (selSearchName != null){
-            setTitle(selSearchName);
-            displayItemNamesFromSearch(selSearchName);
-        }*/
+        }
     }
 
     void searchItemByType(String itemType){
@@ -48,7 +42,7 @@ public class Viewname_class extends AppCompatActivity {
         GLMDatabase db = GLMDatabase.getInstance(getApplicationContext());
         itemList = db.getItemsByType(itemType);
 
-        itemAdapter = new CustAdapter(this, android.R.layout.simple_list_item_1, itemList);
+        CustAdapter itemAdapter = new CustAdapter(this, android.R.layout.simple_list_item_1, itemList);
         listView.setAdapter(itemAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
