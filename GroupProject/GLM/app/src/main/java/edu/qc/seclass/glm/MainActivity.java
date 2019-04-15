@@ -24,27 +24,27 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+//grocery list manager
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     CheckBox selectAll;
-	public static ArrayList<Grocery_list> list;
+    public static ArrayList<Grocery_list> list;
     public static Context context;
-	CustAdapter listAdapter;
-	GLMDatabase db;
-	Grocery_list renamedList;
+    CustAdapter listAdapter;
+    GLMDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = GLMDatabase.getInstance(getApplicationContext());
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         list = db.getList();
-        listView = (ListView) findViewById(R.id.listView);
-        selectAll = (CheckBox) findViewById(R.id.Selectall);
+        listView = findViewById(R.id.listView);
+        selectAll = findViewById(R.id.Selectall);
         setTitle("List Manager");
-		listAdapter = new CustAdapter(this, android.R.layout.simple_list_item_1, list);
+        listAdapter = new CustAdapter(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(listAdapter);
         selectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 // When clicked, jump to the list actiivity
                 Intent intent = new Intent(MainActivity.this, Lists.class);
-                intent.putExtra("glposition", db.getListID(list.get(position).getName()));
+                intent.putExtra("glposition", list.get(position).getID());
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
@@ -85,11 +85,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         int numSelected = 0;
         switch (item.getItemId()){
+            //go to add new list
             case R.id.addlist:
                 intent = new Intent(this, AddList.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 return true;
+            //go to rename selected list
             case R.id.renamelist:
                 for (Grocery_list list : list){
                     if (list.isSelected()){
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     listAdapter.notifyDataSetChanged();
                 }
                 return true;
+            //delete selected list
             case R.id.deletelist:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Delete Selected Lists");
@@ -135,11 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             for (int i = list.size() - 1; i >= 0; i--) {
                                 if (list.get(i).isSelected()) {
-                                    db.removeList(list.get(i).getName());
-                                    ArrayList<String> il = db.getItemList();
-                                    for(String x : il){
-                                        System.out.println(x);
-                                    }
+                                    db.removeList(list.get(i).getID());
                                     list.remove(i);
                                 }
                             }
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public class CustAdapter extends ArrayAdapter<Grocery_list>{
+    private class CustAdapter extends ArrayAdapter<Grocery_list>{
         ArrayList<Grocery_list> glist;
         public CustAdapter(Context context, int textViewResourceId, ArrayList<Grocery_list> list) {
             super(context, textViewResourceId, list);
@@ -193,9 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 holder.checkBox.setOnClickListener( new View.OnClickListener() {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
-
                         Grocery_list l = list.get(position);
-
                         l.setSelected(cb.isChecked());
                     }
                 });
@@ -205,12 +202,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Grocery_list l = list.get(position);
-
             holder.listName.setText(l.getName());
             holder.checkBox.setChecked(l.isSelected());
             holder.checkBox.setTag(list);
             return convertView;
-
         }
     }
 }

@@ -125,6 +125,14 @@ public class GLMDatabase extends SQLiteOpenHelper
         }
     }
 
+    public void insertItem(Item_list item){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("itemName", item.getName());
+        values.put("typeID", getTypeID(item.getType(), db));
+        db.insert("ITEM_LIST", null, values);
+    }
+
     public ArrayList<Grocery_list> getList(){
         ArrayList<Grocery_list> glist = new ArrayList<>();
         String q = "SELECT * FROM GROCERY_LIST";
@@ -132,7 +140,7 @@ public class GLMDatabase extends SQLiteOpenHelper
         Cursor cursor = db.rawQuery(q, null);
         if(cursor.moveToFirst()){
             do{
-                Grocery_list gl = new Grocery_list(cursor.getString(1), false);
+                Grocery_list gl = new Grocery_list(cursor.getString(1), false, cursor.getInt(0));
                 glist.add(gl);
             }while(cursor.moveToNext());
         }
@@ -140,24 +148,24 @@ public class GLMDatabase extends SQLiteOpenHelper
         return glist;
     }
 
-    void addList(String name){
+    int addList(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("GroceryListName", name);
-        db.insert("GROCERY_LIST", null, values);
+        return (int)db.insert("GROCERY_LIST", null, values);
     }
 
-    void renameList(String oldName, String newName){
+    void renameList(long glID, String newName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("GroceryListName", newName);
-        db.update("GROCERY_LIST", values, "GroceryListName ='"+oldName+"'", null);
+        db.update("GROCERY_LIST", values, "ListID ="+glID, null);
     }
 
-    void removeList(String name){
+    void removeList(long glID){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("GROCERY_LIST_RELATION_TO_ITEMS", "ListID = " + getListID(name, db), null);
-        db.delete("GROCERY_LIST", "GroceryListName = '" + name + "'", null);
+        db.delete("GROCERY_LIST_RELATION_TO_ITEMS", "ListID = " + glID, null);
+        db.delete("GROCERY_LIST", "ListID = '" + glID + "'", null);
     }
 
     ArrayList<String> getItemList(){
@@ -197,7 +205,6 @@ public class GLMDatabase extends SQLiteOpenHelper
         return id;
     }
 
-    //SQL Query to add a type
     int getItemID(String name){
         int id = -1;
         String q = "SELECT * FROM ITEM_LIST WHERE itemName = '" + name + "';";
@@ -233,21 +240,6 @@ public class GLMDatabase extends SQLiteOpenHelper
     public ArrayList<String> getTypes(){
         return new ArrayList<>(Arrays.asList(itemTypes));
     }
-
-    /*public ArrayList<String> getTypes1(){
-        ArrayList<String> types = new ArrayList<>();
-        String q = "SELECT * FROM ITEM_TYPE";
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(q, null);
-        if(cursor.moveToFirst()){
-            do{
-                String t = cursor.getString(1);
-                types.add(t);
-            }while(cursor.moveToNext());
-        }
-        cursor.close();
-        return types;
-    }*/
 
     public int getTypeID(String t){
         int id = -1;
@@ -297,7 +289,6 @@ public class GLMDatabase extends SQLiteOpenHelper
             values.put("Qty", qua);
             db.update("GROCERY_LIST_RELATION_TO_ITEMS", values, "ListID = " + listID + " AND ItemID = " +  getItemID(item.getName(), db), null);
         }else {
-            System.out.println("inside additem: listID " + listID);
             values.put("ListID", listID);
             values.put("ItemID", getItemID(item.getName(), db));
             values.put("Qty", item.getQuant());
@@ -391,5 +382,31 @@ public class GLMDatabase extends SQLiteOpenHelper
         }
         cursor.close();
         return types;
+    }
+
+    void deleteItem(Item_list item, int glID){
+        int itemID = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String q = "SELECT * FROM ITEM_LIST WHERE itemName = '" + item.getName() + "' AND typeID =" + getTypeID(item.getType()) + ";";
+        Cursor cursor = db.rawQuery(q, null);
+        if(cursor.moveToFirst()){
+            itemID = cursor.getInt(0);
+        }
+        cursor.close();
+        db.delete("GROCERY_LIST_RELATION_TO_ITEMS", "ListID = " + glID + " AND ItemID = " + itemID, null);
+    }
+
+    void editListItem(Item_list item, int glID){
+        int itemID = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String q = "SELECT * FROM ITEM_LIST WHERE itemName = '" + item.getName() + "' AND typeID =" + getTypeID(item.getType()) + ";";
+        Cursor cursor = db.rawQuery(q, null);
+        if(cursor.moveToFirst()){
+            itemID = cursor.getInt(0);
+        }
+        cursor.close();
+        values.put("Qty", Double.parseDouble(item.getQuant()));
+        db.update("GROCERY_LIST_RELATION_TO_ITEMS", values,"ListID = " + glID + " AND ItemID = " + itemID, null);
     }
 }

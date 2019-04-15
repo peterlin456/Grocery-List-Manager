@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//add item to list
 public class AddItem extends AppCompatActivity {
     Button button;
     EditText quantity;
@@ -25,7 +26,7 @@ public class AddItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Add Item to List");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -33,25 +34,25 @@ public class AddItem extends AppCompatActivity {
         glposition = getIntent().getIntExtra("glposition", -1);
         position = getIntent().getIntExtra("position", -1);
         item = Viewname_class.itemList.get(position);
-        button = (Button)findViewById(R.id.addtolist);
-        name = (TextView) findViewById(R.id.name);
+        button = findViewById(R.id.addtolist);
+        name = findViewById(R.id.name);
         name.setText(item);
-        quantity = (EditText)findViewById(R.id.quantity);
+        quantity = findViewById(R.id.quantity);
         quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //quantity cannot be empty
                 if(quantity.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "Please enter quantity", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Quantity cannot be empty", Toast.LENGTH_LONG).show();
                 }else {
                     que = Double.parseDouble(quantity.getText().toString());
                     newItem = new Item_list(item, db.getItemType(db.getItemID(item)), que, false);
                     db.addItem(newItem, glposition);
-                    // When clicked, jump back to list manager
                     Intent intent = new Intent(AddItem.this, Lists.class);
                     intent.putExtra("glposition", glposition);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    //finish();
                 }
             }
         });

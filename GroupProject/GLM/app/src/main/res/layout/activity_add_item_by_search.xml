@@ -34,12 +34,11 @@
             android:id="@+id/quant"
             android:layout_width="104dp"
             android:layout_height="51dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="488dp"
+            android:layout_marginStart="28dp"
             android:text="Quantity:"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iname" />
+            app:layout_constraintBottom_toTopOf="@+id/addtolist"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/name"
@@ -57,55 +56,60 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="288dp"
-            android:layout_height="476dp"
-            android:layout_marginStart="37dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
+            android:layout_width="266dp"
+            android:layout_height="398dp"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="7dp"
             android:padding="4dp"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/quantity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/quant"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <Button
             android:id="@+id/addtolist"
             android:layout_width="match_parent"
             android:layout_height="61dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginBottom="2dp"
             android:text="Add"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quant" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/quantity"
-            android:layout_width="307dp"
+            android:layout_width="276dp"
             android:layout_height="52dp"
-            android:layout_marginTop="504dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="3dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintBottom_toTopOf="@+id/addtolist"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/iname"
             android:layout_width="135dp"
             android:layout_height="56dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="19dp"
             android:text="Item Name:"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/quantity"
-            app:layout_constraintEnd_toStartOf="@+id/name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.035" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="79dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="554dp" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -8,13 +8,15 @@ public class Grocery_list {
     private String name;
     private boolean isSelected;
     public ArrayList<Item_list> itemList;
+    private int listID;
     //DatabaseStore dbs = DatabaseStore.getInstance(getApplicationContext());
 
-    public Grocery_list(String name, boolean isSelected) {
+    public Grocery_list(String name, boolean isSelected, int id) {
         this.name = name;
         this.isSelected = isSelected;
         this.itemList = new ArrayList<>();
         db = GLMDatabase.getInstance(MainActivity.context);
+        listID = id;
     }
 
 /*    public String[] getItemTypes() {
@@ -45,7 +47,7 @@ public class Grocery_list {
     public void setSelected(boolean selected) {
         this.isSelected = selected;
     }
-
+    public int getID(){return listID;}
     /* // Copied to DBStore
     public ArrayList<Item> similarItem(String name)
     {
