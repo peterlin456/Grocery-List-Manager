@@ -86,7 +86,7 @@ public class AddItemBySearch extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "Please enter Item name", Toast.LENGTH_LONG).show();
 
                     //item is not in database
-                }else if(filteredList.isEmpty() || selectedName.equals("")){
+                }else if(filteredList.isEmpty() || !name.getText().toString().equals(filteredList.get(0))){
                     Intent intent = new Intent(AddItemBySearch.this, CreateItem.class);
                     intent.putExtra("name", name.getText().toString());
                     intent.putExtra("glposition", glposition);
@@ -114,9 +114,6 @@ public class AddItemBySearch extends AppCompatActivity{
 
     //filter for item name input
     void filter(String text){
-
-        if(filteredList.size() > 0 && !text.equals(filteredList.get(0)))
-            selectedName = selectedType = "";
         if(!text.equals("")) {
             int count;
             filteredList = db.getSimilarItem(text);
