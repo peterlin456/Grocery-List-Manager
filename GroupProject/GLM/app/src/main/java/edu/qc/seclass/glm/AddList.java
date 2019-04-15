@@ -24,7 +24,7 @@ public class AddList extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setTitle("Create new Item");
+        setTitle("Create new List");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         button = findViewById(R.id.addlistbutton);

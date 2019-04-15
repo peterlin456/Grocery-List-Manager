@@ -36,7 +36,7 @@
             android:id="@+id/textView3"
             android:layout_width="250dp"
             android:layout_height="55dp"
-            android:text=" Add  New Item"
+            android:text=" Add  New List"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -49,7 +49,7 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="  Item Name:"
+                android:text="  List Name:"
                 android:textSize="24sp" />
 
             <EditText
