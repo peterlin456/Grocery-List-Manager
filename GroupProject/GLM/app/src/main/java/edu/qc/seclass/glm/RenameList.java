@@ -19,7 +19,7 @@ public class RenameList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rename_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle("Create new Item");
+        setTitle("Rename list");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = findViewById(R.id.listNameText);
