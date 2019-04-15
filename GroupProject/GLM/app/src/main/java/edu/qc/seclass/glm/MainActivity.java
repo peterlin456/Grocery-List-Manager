@@ -18,9 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.support.v7.app.ActionBar;
 import android.widget.TextView;
 import android.widget.Toast;
 

@@ -103,11 +103,10 @@ public class Lists extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("glposition", glposition);
                 startActivity(intent);
-                itemList = db.getItemList(glposition);
-                itemAdapter.notifyDataSetChanged();
                 return true;
             case R.id.additem:
-                intent = new Intent(this, AddItem.class);
+                intent = new Intent(this, AddItemBySearch.class);
+                intent.putExtra("glposition", glposition);
                 startActivity(intent);
                 return true;
             case R.id.deletel:

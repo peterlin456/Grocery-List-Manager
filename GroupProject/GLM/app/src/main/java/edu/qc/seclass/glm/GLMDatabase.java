@@ -360,4 +360,36 @@ public class GLMDatabase extends SQLiteOpenHelper
         cursor.close();
         return type;
     }
+
+    ArrayList<String> getSimilarItem(String text){
+        ArrayList<String> iList = new ArrayList<>();
+        String name;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String q = "SELECT * FROM ITEM_LIST WHERE itemName LIKE '%%" + text + "%%';";
+        Cursor cursor = db.rawQuery(q, null);
+        if(cursor.moveToFirst()){
+            do{
+                name = cursor.getString(1);
+                iList.add(name);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return iList;
+    }
+
+    ArrayList<String> getItemType(String item){
+        String type = "";
+        ArrayList<String> types = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String q = "SELECT ITEM_TYPE.*, ITEM_LIST.* FROM ITEM_TYPE, ITEM_LIST WHERE itemName = '" + item + "' AND typeID = ID";
+        Cursor cursor = db.rawQuery(q, null);
+        if(cursor.moveToFirst()) {
+            do{
+                type = cursor.getString(1);
+                types.add(type);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return types;
+    }
 }
