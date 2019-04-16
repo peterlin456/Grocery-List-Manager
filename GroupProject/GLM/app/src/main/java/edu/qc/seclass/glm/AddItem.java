@@ -21,6 +21,7 @@ public class AddItem extends AppCompatActivity {
     int glposition, position;
     Item_list newItem;
     GLMDatabase db;
+    String limitQ;
     double que;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

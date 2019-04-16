@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
-        int numSelected = 0;
         switch (item.getItemId()){
             //go to add new list
             case R.id.addlist:
@@ -93,24 +92,24 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             //go to rename selected list
             case R.id.renamelist:
+                int numSelected = 0;
                 for (Grocery_list list : list){
                     if (list.isSelected()){
-                        if (numSelected > 1){
+                        ++numSelected;
+                        if (numSelected > 1) {
                             Context context = getApplicationContext();
                             CharSequence text = "Only one list can be selected for renaming";
                             int duration = Toast.LENGTH_SHORT;
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
                             return true;
-                        } else {
-                            ++numSelected;
                         }
                     }
                 }
                 if (numSelected <= 0) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please select one list to name", Toast.LENGTH_LONG);
                     toast.show();
-                }else {
+                }else{
                     intent = new Intent(this, RenameList.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
