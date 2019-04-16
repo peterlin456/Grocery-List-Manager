@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -36,6 +37,7 @@ public class CreateItem extends AppCompatActivity {
         newName = getIntent().getStringExtra("name");
         name = findViewById(R.id.nameText);
         quantity = findViewById(R.id.quantityText);
+        quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         button = findViewById(R.id.button);
         addTypeOnSpinner();
         name.setText(newName);

@@ -69,6 +69,7 @@
             android:layout_width="307dp"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
+            android:maxLength="6"
             android:ems="10"
             android:inputType="textPersonName"
             android:textSize="24sp"

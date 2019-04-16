@@ -33,7 +33,7 @@ Require Android 5.0 or above and has at least 50MB storage free.
 
 ### 2.2 Deployment Diagram
 
-- The deployment diagram is simple and straight forward, since the only hardware element is android device, which everything is run on the device and handle its own database. 
+- The deployment diagram is simple and straight forward, since the only hardware element is android device, which everything is run on the device and handle its own database.
 
 ![Deployment_Diagram](design_diagram/DEP_diagram.png)
 
@@ -48,46 +48,46 @@ Require Android 5.0 or above and has at least 50MB storage free.
 
 ### 3.2 Other Diagrams
 
-- In the sequence diagram, describe the interactions between List Manager, Grocery List, Item and ItemType. 
+- In the sequence diagram, describe the interactions between List Manager, Grocery List, Item and ItemType.
 
 ![Sequence_Diagram](design_diagram/SEQ_diagram.png)
 
 ## 4 User Interface Design
 
-When the app launch, it show the last grocery list selected and items in that list.
+When the app launch, it show all grocery list.
 
 ![UI pics](UI_design-pics/6-Screen1.png)
 
-Can select different grocery list by clicking the list's name on the top
-
-![UI pics](UI_design-pics/1-Screen1.png)
-
-To Add an item, type in the item's name into the search box
+Can add, rename, or delete list by clicking top right ![UI pics](UI_design-pics/menu_action_icon.png)
 
 ![UI pics](UI_design-pics/3-Screen10.png)
 
-Can search item by type, clear all checked item, check all item, delete checked item, or delete all item by clinking ![UI pics](UI_design-pics/action_icon.png) on the top right corner
+Can select different grocery list by clicking the list's name.
+
+![UI pics](UI_design-pics/1-Screen1.png)
+
+Inside a grocery list show list of items in that list
 
 ![UI pics](UI_design-pics/10-Screen3.png)
 
-Edit each item quantity by clicking ![UI pics](UI_design-pics/menu_action_icon.png) to the right on that item
+Edit each item quantity by clicking on the item
 
 ![UI pics](UI_design-pics/7-Screen8.png)
 
-When search by type is clicked, list of types will be show then list of items of selected type will be shows.
+Can Search item by type, add item by search item name, and delete selected item by clicking ![UI pics](UI_design-pics/menu_action_icon.png)
 
-You can also search the type or item by typing the type or item name in the search box
+![UI pics](UI_design-pics/9-Screen1.png)
+
+When search by type is clicked, list of types will be show then list of items of selected type will be shows.
 
 ![UI pics](UI_design-pics/2-Screen6.png)
 
 ![UI pics](UI_design-pics/5-Screen7.png)
 
-When the menu icon ![component diagram](UI_design-pics/menu_icon.png) is clicked, a menu show up and can navigate to List management or add a new item
+When searching item name, result will shows
 
-![UI pics](UI_design-pics/9-Screen1.png)
-
-In List management, you can add a new list, edit list's name, delete checked list, delete all list.
 ![UI pics](UI_design-pics/8-Screen4.png)
 
-In Add new Item.
+Create a new item and add to list
+
 ![UI pics](UI_design-pics/3-Screen9.png)
