@@ -2,7 +2,7 @@
 
 **Author**: Team 4
 
-**Version**: 1.0
+**Version**: 1.7
 
 ## 1 Design Considerations
 
@@ -16,7 +16,7 @@ Online grocery list sharing is not supported.
 
 ### 1.3 System Environment
 
-Require Android 5.0 or above and has at least 50MB storage free.
+Require Android 5.0 or above and has at least 10MB storage free.
 
 ## 2 Architectural Design
 
