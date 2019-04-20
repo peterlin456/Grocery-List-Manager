@@ -27,7 +27,6 @@
         android:scrollbars = "vertical"
         android:layout_toEndOf="@+id/checkBox"
         android:text="Name"
-        android:textAlignment="center"
         android:textColor="@color/abc_input_method_navigation_guard" />
 
 
