@@ -86,7 +86,7 @@ public class AddItemBySearch extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "Please enter Item name", Toast.LENGTH_LONG).show();
 
                     //item is not in database
-                }else if(filteredList.isEmpty() || !name.getText().toString().equals(filteredList.get(0))){
+                }else if(filteredList.isEmpty() || !name.getText().toString().toLowerCase().equals(filteredList.get(0).toLowerCase())){
                     Intent intent = new Intent(AddItemBySearch.this, CreateItem.class);
                     intent.putExtra("name", name.getText().toString());
                     intent.putExtra("glposition", glposition);
@@ -103,7 +103,11 @@ public class AddItemBySearch extends AppCompatActivity{
                         Toast.makeText(getApplicationContext(), "Quantity must be greater than 0", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    newItem = new Item_list(name.getText().toString(), selectedType, que, false);
+                    String selectedItem = selectedName;
+                    if(selectedItem.equals("")){
+                        selectedItem = filteredList.get(0);
+                    }
+                    newItem = new Item_list(selectedItem, selectedType, que, false);
                     db.addItem(newItem, glposition);
                     // When clicked, jump back to list manager
                     Intent intent = new Intent(AddItemBySearch.this, Lists.class);
