@@ -2,7 +2,7 @@
 
 **Author**: Team 4
 
-Version 1.1
+**Version**: 1.7
 ## 1 Introduction
 
 The product we will be developing will be an Android app for managing grocery lists.

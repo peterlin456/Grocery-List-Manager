@@ -2,7 +2,7 @@
 ---
 **Author**: Team 4
 
-**Version**: 1.5
+**Version**: 1.7
 
 ### Table of Contents
 ---
@@ -72,6 +72,7 @@ On starting the app, the user can manage available lists. On the left, there are
 - On clicking this option, the user will be brought to a screen where they can enter the name for the list to be created into a text input box.
 - The "ADD" button is clicked to create the new list with the given name.
 - If the user wishes to cancel "Add List", the user can click the arrow on the top left to return to "List Manager".
+- The name for a list can be up to 60 characters.
 
 #### 2.2.2 Rename List
 ---
@@ -80,6 +81,7 @@ On starting the app, the user can manage available lists. On the left, there are
 - On clicking this option, the user will be brought to a screen where they can enter the name for the list to be renamed into a text input box.
 - The "RENAME" button is clicked to rename the list with the given name.
 - If the user wishes to cancel "Rename List", the user can click the arrow on the top left to return to "List Manager".
+- The name for a list can be up to 60 characters.
 
 #### 2.2.3 Delete List
 ---
@@ -96,7 +98,7 @@ On starting the app, the user can manage available lists. On the left, there are
 
 #### 2.3 Grocery List
 ---
-In the grocery list, the user can manage the items on the grocery list. On the left, there are checkboxes for the user to choose item(s) for "Delete". The topmost checkbox can be clicked to check off all items or uncheck all items if they are all checked. On the top right, there is a menu with three options "Search Item Type", "Add Item", and "Delete". If the user wishes to return to "Grocery List Manager", the arrow on the top left will send them back.
+In the grocery list, the user can manage the items on the grocery list. On the left, there are checkboxes for the user to choose item(s) for "Delete". The topmost checkbox can be clicked to check off all items or uncheck all items if they are all checked. On the top right, there is a menu with three options "Search Item Type", "Add Item", and "Delete". If the user wishes to return to "Grocery List Manager", the arrow on the top left will send them back. The maximum quantity for an item is 999999.
 
 #### 2.3.1 Search Item Type
 ---
@@ -122,6 +124,7 @@ In the grocery list, the user can manage the items on the grocery list. On the l
 - On the bottom of the screen, the user can input the quantity for the item to be added to the grocery list with.
 - The "ADD" button can be clicked to add the item with the given quantity to their grocery list and save the item to the database.
 - If the user wishes to cancel "Add New Item to List", they can click the arrow on the top left to return to "Add Item".
+- The name for an item can be up to 50 characters.
 
 #### 2.3.4 Delete
 ---
