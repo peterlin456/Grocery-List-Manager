@@ -49,11 +49,12 @@
                 android:text="  Item Name:"
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/nameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:maxLength="50"
                 android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>

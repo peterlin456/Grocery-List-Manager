@@ -99,7 +99,11 @@ public class AddItemBySearch extends AppCompatActivity{
                     //add item to database
                 }else{
                     que = Double.parseDouble(quantity.getText().toString());
-                    newItem = new Item_list(selectedName, selectedType, que, false);
+                    if(que <= 0.0) {
+                        Toast.makeText(getApplicationContext(), "Quantity must be greater than 0", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    newItem = new Item_list(name.getText().toString(), selectedType, que, false);
                     db.addItem(newItem, glposition);
                     // When clicked, jump back to list manager
                     Intent intent = new Intent(AddItemBySearch.this, Lists.class);

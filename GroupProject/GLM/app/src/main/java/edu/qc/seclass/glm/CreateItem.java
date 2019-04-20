@@ -11,13 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 //create new item
 public class CreateItem extends AppCompatActivity {
-    EditText name, quantity;
+    TextView name;
+    EditText quantity;
     Spinner types;
     int glposition = -1;
     String newName = "";
@@ -52,6 +54,10 @@ public class CreateItem extends AppCompatActivity {
                     return;
                 }
                 Double quant = Double.parseDouble(quantity.getText().toString());
+                if(quant <= 0.0) {
+                    Toast.makeText(getApplicationContext(), "Quantity must be greater than 0", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Item_list item = new Item_list(nameV, typeV,quant,false);
                 //if item already in database dont create it
                 if(isNewItem(item))

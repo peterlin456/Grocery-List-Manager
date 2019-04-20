@@ -49,6 +49,7 @@
             android:inputType="text"
             android:singleLine="true"
             android:textAlignment="center"
+            android:maxLength="50"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iname"

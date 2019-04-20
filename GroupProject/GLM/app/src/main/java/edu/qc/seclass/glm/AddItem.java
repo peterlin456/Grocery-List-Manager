@@ -48,6 +48,10 @@ public class AddItem extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Quantity cannot be empty", Toast.LENGTH_LONG).show();
                 }else {
                     que = Double.parseDouble(quantity.getText().toString());
+                    if(que <= 0.0) {
+                        Toast.makeText(getApplicationContext(), "Quantity must be greater than 0", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     newItem = new Item_list(item, db.getItemType(db.getItemID(item)), que, false);
                     db.addItem(newItem, glposition);
                     Intent intent = new Intent(AddItem.this, Lists.class);

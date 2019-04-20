@@ -216,12 +216,13 @@ public class GLMDatabase extends SQLiteOpenHelper
         return id;
     }
 
-    int getItemID(String name, SQLiteDatabase db){
-        int id;
-        String q = "SELECT * FROM ITEM_LIST WHERE itemName = '" + name + "';";
+    int getItemID(String itemName, SQLiteDatabase db) {
+        int id = -1;
+        String q = "SELECT * FROM ITEM_LIST WHERE itemName = '" + itemName + "';";
         Cursor cursor = db.rawQuery(q, null);
-        cursor.moveToFirst();
-        id = cursor.getInt(0);
+        if (cursor.moveToFirst()){
+            id = cursor.getInt(0);
+        }
         cursor.close();
         return id;
     }
@@ -286,6 +287,9 @@ public class GLMDatabase extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         if(cursor.moveToFirst()){
             qua = cursor.getDouble(2) + Double.parseDouble(item.getQuant());
+            if(qua > 999999.0){
+                qua = 999999.0;
+            }
             values.put("Qty", qua);
             db.update("GROCERY_LIST_RELATION_TO_ITEMS", values, "ListID = " + listID + " AND ItemID = " +  getItemID(item.getName(), db), null);
         }else {

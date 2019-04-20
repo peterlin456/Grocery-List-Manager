@@ -48,6 +48,10 @@ public class EditItem extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter quantity", Toast.LENGTH_LONG).show();
                 }else {
                     que = Double.parseDouble(quantity.getText().toString());
+                    if(que <= 0.0) {
+                        Toast.makeText(getApplicationContext(), "Quantity must be greater than 0", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     item.setQuant(que);
                     db.editListItem(item, glposition);
                     // When clicked, jump back to list manager
